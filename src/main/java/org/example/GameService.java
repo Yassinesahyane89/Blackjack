@@ -9,7 +9,7 @@ public class GameService {
         int cardIndex = 0;
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 13; j++) {
-                deck[cardIndex] = new Card(j,suits[i]);
+                deck[cardIndex] = new Card(j+1,suits[i]);
                 cardIndex++;
             }
         }
