@@ -46,4 +46,22 @@ public class GameService {
 
         return deck;
     }
+
+    public static Card[] DeleteElementFromArray(Card[] deck, int indic){
+
+        int lenghtOldDeck = deck.length;
+        Card[] newDeck = new Card[lenghtOldDeck-1];
+        for (int i = 0; i < indic; i++) {
+            newDeck[i] = deck[i];
+        }
+        for (int i = 0; i < lenghtOldDeck-1-indic; i++) {
+            newDeck[indic + i] = deck[indic + 1 + i];
+        }
+        return newDeck;
+    }
+    public static ExtractionResult extractThCard(Card[] deck, int indic){
+        Card cardDeleted = deck[indic-1];
+        Card[] newDeck = DeleteElementFromArray(deck,indic);
+        return new ExtractionResult(cardDeleted, newDeck);
+    }
 }

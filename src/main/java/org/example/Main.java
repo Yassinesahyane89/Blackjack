@@ -3,11 +3,13 @@ package org.example;
 public class Main {
 
     public static void main(String[] args) {
-        Card[] deck= GameService.CreateSubDeck(new Card(4,"Diamonds"));
+        Card[] deck= GameService.CreateDeck();
+        Card[] newDeck = GameService.DeleteElementFromArray(deck, 2);
 
-        for (Card card: deck) {
+        for (Card card: newDeck) {
             System.out.println("[ " + card.getRange() + "," + card.getSuit() + " ]");
         }
+
 
 
     }
