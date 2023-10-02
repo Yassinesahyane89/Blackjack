@@ -15,7 +15,7 @@ public class GameService {
         return deck;
     }
 
-    public static int ElementIndex(String suit){
+    public static int SuitsElementIndex(String suit){
         int elementIndex = -1;
         String[] suits = CardConstants.suits;
         for (int i = 0; i < suits.length; i++) {
@@ -29,7 +29,7 @@ public class GameService {
 
     public static Card[] CreateSubDeck(Card startingCard){
 
-        int suitIndex = ElementIndex(startingCard.getSuit());
+        int suitIndex = SuitsElementIndex(startingCard.getSuit());
         int lengthDeck = ((CardConstants.suits.length-1) - suitIndex )*13 + 13 - startingCard.getRange();
 
         Card[] deck = new Card[lengthDeck];
