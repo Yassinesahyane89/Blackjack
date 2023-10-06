@@ -37,7 +37,16 @@ public class Main {
         player.setMoney(playerMoney);
 
         System.out.println("Lets play ");
-        System.out.println(Colors.ANSI_YELLOW + "\n☛ Your account: €" + player.getMoney() + Colors.ANSI_RESET);
+        System.out.println(Colors.YELLOW + "\n☛ Your account: €" + player.getMoney() + Colors.RESET);
+
+        System.out.println("\nThe Min bet => "+BlackjackGame.MIN_BET);
+        System.out.print("\nEnter your Bet :");
+        int bet = sc.nextInt();
+        while (bet > player.getMoney() || bet < BlackjackGame.MIN_BET){
+            System.out.println(Colors.RED + "⚠ Attention ⚠ Enter a bet between " + BlackjackGame.MIN_BET + " and " + player.getMoney() + " : " + Colors.RESET);
+            bet = sc.nextInt();
+        }
+        player.setBet(bet);
     }
 
 }
