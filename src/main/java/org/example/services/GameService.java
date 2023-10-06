@@ -1,8 +1,12 @@
-package org.example;
+package org.example.services;
+
+import org.example.util.CardConstants;
+import org.example.model.Card;
 
 import java.util.Random;
 
 public class GameService {
+    public  static final String[] suits = {"Hearts", "Diamonds", "Spades", "Clubs"};
     public static Card[] newDeck = new Card[52];
     public static Integer newSize =0;
     public static Card[] CreateDeck(){
@@ -12,7 +16,7 @@ public class GameService {
         int cardIndex = 0;
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 13; j++) {
-                deck[cardIndex] = new Card(j+1,CardConstants.suits[i]);
+                deck[cardIndex] = new Card(j+1, CardConstants.suits[i]);
                 cardIndex++;
             }
         }
