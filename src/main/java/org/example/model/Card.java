@@ -4,11 +4,19 @@ import lombok.Data;
 
 @Data
 public class Card {
+    /**
+     * Integer value of the card.
+     */
     private int Range;
-    private String Suit;
-
-    public Card(int range, String suit) {
+    /**
+     * Symbol of the suit.
+     */
+    private Symbol symbol;
+    /**
+     * Constructor for a card.
+     */
+    public Card(int range, Symbol symbol) {
         Range = range;
-        Suit = suit;
+        this.symbol = symbol;
     }
 }

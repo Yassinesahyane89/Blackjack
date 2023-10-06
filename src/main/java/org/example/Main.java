@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.game.BlackjackGame;
 import org.example.game.Player;
 
 import java.util.Scanner;
@@ -27,8 +28,8 @@ public class Main {
         player.setName(playerName);
         System.out.print("Enter how much money you have: ");
         int playerMoney = sc.nextInt();
-        while (playerMoney<=0){
-            System.out.println("Invalid money amount. Please enter a non-negative integer.");
+        while (playerMoney<=0 || playerMoney < BlackjackGame.MIN_BET){
+            System.out.println("Invalid money amount. Please enter a non-negative integer && greath than ."+BlackjackGame.MIN_BET);
             System.out.print("Enter how much money you have: ");
             playerMoney = sc.nextInt();
         }
