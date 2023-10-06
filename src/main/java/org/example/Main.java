@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.game.BlackjackGame;
 import org.example.game.Player;
+import org.example.util.Colors;
 
 import java.util.Scanner;
 
@@ -16,7 +17,7 @@ public class Main {
          */
         System.out.print("Enter your name : ");
         String playerName = sc.nextLine();
-        while (playerName.isEmpty() || playerName.matches("^[a-zA-Z0-9]*$")){
+        while (playerName.isEmpty() || !playerName.matches("^[a-zA-Z0-9]*$")){
             System.out.println("Invalid name. Please use only letters and numbers.");
             System.out.print("Enter your name : ");
             playerName = sc.nextLine();
@@ -34,6 +35,9 @@ public class Main {
             playerMoney = sc.nextInt();
         }
         player.setMoney(playerMoney);
+
+        System.out.println("Lets play ");
+        System.out.println(Colors.ANSI_YELLOW + "\n☛ Your account: €" + player.getMoney() + Colors.ANSI_RESET);
     }
 
 }
