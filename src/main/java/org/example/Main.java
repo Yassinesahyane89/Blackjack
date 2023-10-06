@@ -51,7 +51,7 @@ public class Main {
         }
         player.setBet(bet);
 
-        BlackjackGame blackjackGame = new BlackjackGame();
+        BlackjackGame blackjackGame = new BlackjackGame(player);
     }
 
 }

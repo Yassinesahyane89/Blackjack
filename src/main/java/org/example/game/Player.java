@@ -23,4 +23,14 @@ public class Player {
      * Player's hand of cards.
      */
     private ArrayList<Card> cards;
+    /**
+     * Constructor for a player with default value.
+     */
+    public Player(){
+        name = "undefined";
+        cards = new ArrayList<>();
+        money = 0;
+        bet = 0;
+    }
+
 }

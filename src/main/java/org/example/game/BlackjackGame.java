@@ -12,7 +12,7 @@ public class BlackjackGame {
     /**
      * Initial deck of the game composed of a number of cards multiple of 52 up to 416.
      */
-    private final ArrayList<Card> deck = CreateDeck();
+    private final ArrayList<Card> deck = shuffleDeck(CreateDeck());
     /**
      * Maximum card value to win.
      */
@@ -26,9 +26,21 @@ public class BlackjackGame {
      */
     public static ArrayList<Card> newDeck = new ArrayList<>();
     /**
+     * player.
+     */
+    private Player player;
+    /**
+     * Dealer.
+     */
+    private Player dealer;
+    /**
      * Constructor for a Blackjack game with an already initialized player.
      */
-
+    public BlackjackGame(Player player){
+        dealer = new Player();
+        dealer.setName("dealer");
+        this.player = player;
+    }
     /**
      * Method to initialize the deck of cards.
      */
