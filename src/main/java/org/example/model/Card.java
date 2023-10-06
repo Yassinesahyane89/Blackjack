@@ -7,7 +7,7 @@ public class Card {
     /**
      * Integer value of the card.
      */
-    private int Range;
+    private int range;
     /**
      * Symbol of the suit.
      */
@@ -16,7 +16,12 @@ public class Card {
      * Constructor for a card.
      */
     public Card(int range, Symbol symbol) {
-        Range = range;
+        this.range = range;
         this.symbol = symbol;
+    }
+
+    @Override
+    public String toString() {
+        return  "[ "+range + " , " + symbol + " ]";
     }
 }

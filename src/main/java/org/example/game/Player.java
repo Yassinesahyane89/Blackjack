@@ -32,5 +32,11 @@ public class Player {
         money = 0;
         bet = 0;
     }
+    /**
+     * Adds a new card to the player's hand.
+     */
+    public void addCard(Card c){
+        cards.add(c);
+    }
 
 }

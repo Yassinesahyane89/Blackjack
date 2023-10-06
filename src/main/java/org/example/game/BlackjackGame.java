@@ -2,11 +2,9 @@ package org.example.game;
 
 import org.example.model.Card;
 import org.example.model.Symbol;
+import org.example.util.Colors;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class BlackjackGame {
     /**
@@ -28,11 +26,20 @@ public class BlackjackGame {
     /**
      * player.
      */
-    private Player player;
+    private final Player player;
     /**
      * Dealer.
      */
-    private Player dealer;
+    private final Player dealer;
+    /**
+     * Indicates whether the game is currently in progress (true) or has finished (false).
+     */
+    private boolean isGameInProgress;
+
+    /**
+     * Indicates whether it's currently the player's turn (true) or the player's turn has ended (false).
+     */
+    private boolean isPlayerTurn;
     /**
      * Constructor for a Blackjack game with an already initialized player.
      */
@@ -40,6 +47,8 @@ public class BlackjackGame {
         dealer = new Player();
         dealer.setName("dealer");
         this.player = player;
+        isGameInProgress = true;
+        isPlayerTurn = true;
     }
     /**
      * Method to initialize the deck of cards.
@@ -98,5 +107,99 @@ public class BlackjackGame {
             newDeck = drawResult.get(2); // Update newDeck with the drawn cards.
         }
         return newDeck;
+    }
+    /**
+     * Calculates the total value of the player hand.
+     */
+    public int calculateCardsValue(Player player){
+        ArrayList<Card> playerCards = player.getCards();
+        int value =0;
+        boolean hasAce = false;
+        for (Card card : playerCards){
+            int cardValue = card.getRange();
+            if(cardValue == 1){
+                hasAce=true;
+                value += 11;
+            } else if (cardValue >=10) {
+                value += 10;
+            } else {
+                value += cardValue;
+            }
+        }
+
+        if( hasAce && value > MAX_CARDS_VALUE){
+            value -= 10;
+        }
+
+        return value;
+    }
+    /**
+     * Handles the player's turn.
+     */
+    public void PalyerPaly(){
+        Scanner sc = new Scanner(System.in);
+        if(player.getCards().size()<2){
+            player.addCard(deck.remove(0));
+        }else{
+            if(calculateCardsValue(player)!=MAX_CARDS_VALUE){
+                System.out.println(Colors.YELLOW + "1 -> Hit" + Colors.RESET);
+                System.out.println(Colors.YELLOW + "2 -> Stand " + Colors.RESET);
+                System.out.print("Enter your choice : ");
+                int responce = sc.nextInt();
+                if(responce == 1){
+                    player.addCard(deck.remove(0));
+                }else{
+                    isPlayerTurn = false;
+                }
+                if(calculateCardsValue(player) == MAX_CARDS_VALUE){
+                    isPlayerTurn = false;
+                }
+                if(calculateCardsValue(player) > MAX_CARDS_VALUE){
+                    isPlayerTurn = false;
+                    isGameInProgress = false;
+                }
+            }else{
+                isPlayerTurn = false;
+            }
+        }
+    }
+    /**
+     * Handles the dealer's turn.
+     */
+    public void DealerPlay(){
+        if(dealer.getCards().size()<2){
+            dealer.addCard(deck.remove(0));
+        } else if (calculateCardsValue(dealer) < calculateCardsValue(player)) {
+            dealer.addCard(deck.remove(0));
+        }else{
+            isGameInProgress = false;
+        }
+
+        if(dealer.getCards().size()>=2 && calculateCardsValue(dealer)>calculateCardsValue(player) || calculateCardsValue(dealer)>=MAX_CARDS_VALUE){
+            isGameInProgress=false;
+        }
+    }
+    /**
+     * Prints the cards and their values for the player and dealer.
+     */
+    public void printPlayerAndDealerCards(){
+        System.out.println("\n"+dealer.getName()+"  "+dealer.getCards()+"  values => " + calculateCardsValue(dealer));
+        System.out.println(player.getName()+"  "+player.getCards()+"  values => " + calculateCardsValue(player));
+    }
+    /**
+     * Starts the game and handles player and dealer turns until the game ends.
+     */
+    public void play(){
+        DealerPlay();
+        while (isGameInProgress){
+            while (isPlayerTurn){
+                PalyerPaly();
+                printPlayerAndDealerCards();
+            }
+            if(isGameInProgress){
+                DealerPlay();
+                printPlayerAndDealerCards();
+            }
+        }
     }
 }

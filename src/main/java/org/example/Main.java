@@ -52,6 +52,7 @@ public class Main {
         player.setBet(bet);
 
         BlackjackGame blackjackGame = new BlackjackGame(player);
+        blackjackGame.play();
     }
 
 }
