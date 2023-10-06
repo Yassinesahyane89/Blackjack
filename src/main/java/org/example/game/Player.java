@@ -1,6 +1,9 @@
 package org.example.game;
 
 import lombok.Data;
+import org.example.model.Card;
+
+import java.util.ArrayList;
 
 @Data
 public class Player {
@@ -16,28 +19,8 @@ public class Player {
      * Player's bet.
      */
     private int bet;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getMoney() {
-        return money;
-    }
-
-    public void setMoney(int money) {
-        this.money = money;
-    }
-
-    public int getBet() {
-        return bet;
-    }
-
-    public void setBet(int bet) {
-        this.bet = bet;
-    }
+    /**
+     * Player's hand of cards.
+     */
+    private ArrayList<Card> cards;
 }

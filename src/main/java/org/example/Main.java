@@ -2,13 +2,16 @@ package org.example;
 
 import org.example.game.BlackjackGame;
 import org.example.game.Player;
+import org.example.model.Card;
 import org.example.util.Colors;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
         Player player = new Player();
 
@@ -47,6 +50,8 @@ public class Main {
             bet = sc.nextInt();
         }
         player.setBet(bet);
+
+        BlackjackGame blackjackGame = new BlackjackGame();
     }
 
 }
