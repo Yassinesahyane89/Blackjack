@@ -51,6 +51,8 @@ public class Main {
 
         BlackjackGame blackjackGame = new BlackjackGame(player);
         blackjackGame.play();
+
+        System.out.println("\n\nThanks for playing!");
     }
 
 }
