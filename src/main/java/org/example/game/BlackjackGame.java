@@ -187,6 +187,33 @@ public class BlackjackGame {
         System.out.println(player.getName()+"  "+player.getCards()+"  values => " + calculateCardsValue(player));
     }
     /**
+     * Determines the winner of the game based on the card values.
+     */
+    public void determineWinner(){
+        int playerValue = calculateCardsValue(player);
+        int dealerValue = calculateCardsValue(dealer);
+        if (playerValue == MAX_CARDS_VALUE && dealerValue == MAX_CARDS_VALUE) {
+            System.out.println(Colors.YELLOW + "\n\nIt's a tie! Both player and dealer have blackjack!,bets have been refunded" + Colors.RESET);
+        } else if (playerValue == MAX_CARDS_VALUE) {
+            System.out.println(Colors.BLUE + "\n\nPlayer wins with blackjack! wins $" +player.getBet()*1.5 + Colors.RESET);
+        } else if (dealerValue == MAX_CARDS_VALUE) {
+            System.out.println(Colors.RED + "\n\nDealer wins with blackjack!" + Colors.RESET);
+        } else {
+            // Compare total card values to determine the winner.
+            if (playerValue > MAX_CARDS_VALUE) {
+                System.out.println(Colors.RED + "\n\nDealer wins. Player busts!" + Colors.RESET);
+            } else if (dealerValue > MAX_CARDS_VALUE) {
+                System.out.println(Colors.BLUE + "\n\nPlayer wins. Dealer busts! wins $" +player.getBet()*2 + Colors.RESET);
+            } else if (playerValue > dealerValue) {
+                System.out.println(Colors.BLUE + "\n\nPlayer wins! wins $" +player.getBet()*2 + Colors.RESET);
+            } else if (dealerValue > playerValue) {
+                System.out.println(Colors.RED + "\n\nDealer wins!" + Colors.RESET);
+            } else {
+                System.out.println(Colors.YELLOW + "\n\nIt's a tie!,bets have been refunded" + Colors.RESET);
+            }
+        }
+    }
+    /**
      * Starts the game and handles player and dealer turns until the game ends.
      */
     public void play(){
