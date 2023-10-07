@@ -1,11 +1,9 @@
 package org.example;
 
-import org.example.game.BlackjackGame;
-import org.example.game.Player;
-import org.example.model.Card;
+import org.example.services.BlackjackGame;
+import org.example.model.Player;
 import org.example.util.Colors;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {

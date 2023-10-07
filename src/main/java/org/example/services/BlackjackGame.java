@@ -1,6 +1,7 @@
-package org.example.game;
+package org.example.services;
 
 import org.example.model.Card;
+import org.example.model.Player;
 import org.example.model.Symbol;
 import org.example.util.Colors;
 
