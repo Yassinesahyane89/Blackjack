@@ -142,7 +142,7 @@ public class BlackjackGame {
             player.addCard(deck.remove(0));
         }else{
             if(calculateCardsValue(player)!=MAX_CARDS_VALUE){
-                System.out.println(Colors.YELLOW + "1 -> Hit" + Colors.RESET);
+                System.out.println(Colors.YELLOW + "\n\n1 -> Hit" + Colors.RESET);
                 System.out.println(Colors.YELLOW + "2 -> Stand " + Colors.RESET);
                 System.out.print("Enter your choice : ");
                 int responce = sc.nextInt();
@@ -228,5 +228,6 @@ public class BlackjackGame {
                 printPlayerAndDealerCards();
             }
         }
+        determineWinner();
     }
 }
